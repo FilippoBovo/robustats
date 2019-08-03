@@ -12,7 +12,7 @@ Estimators implemented in the library:
 
 This library requires Python 3.
 
-You can install the library directly from Git using the following command.
+You can install the library directly from GitHub using the following command.
 
 ```shell
 pip install -e 'git+https://github.com/FilippoBovo/robustats.git#egg=robustats'
