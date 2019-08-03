@@ -33,9 +33,13 @@ double weighted_median(double *x, double *w, int begin, int end, char break_tie)
       n = end - begin + 1; // Length between begin and end
 
       if (n == 1)
+      {
+         free_zip_memory(xw, n);
          return x[begin];
+      }
       else if (n == 2)
       {
+         free_zip_memory(xw, n);
          if (w[begin] >= w[end])
             return x[begin];
          else
@@ -78,7 +82,6 @@ double weighted_median(double *x, double *w, int begin, int end, char break_tie)
          if (!(median_in_lower || median_in_higher))
          {
             free_zip_memory(xw, n);
-            
             return median;
          }
          else if (median_in_lower)
