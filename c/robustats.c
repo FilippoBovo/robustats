@@ -6,6 +6,9 @@
 /**
  * Weighted median.
  * 
+ * For arrays with an even number of elements, this function calculates the
+ * lower weighted median.
+ * 
  * Arguments:
  *    x: array of values
  *    w: array of weights
@@ -13,14 +16,11 @@
  *       weighted median.
  *    end: Ending index of the sub-array over which to calculate the weighted
  *       median.
- *    break_tie: Break a tie where two medians are found by selecting the lower
- *       or higher median. This argument can take values 'l' and 'h' for lower
- *       and higher, respectively.
  * 
  * Return:
  *    Weighted median.
 */
-double weighted_median(double *x, double *w, int begin, int end, char break_tie)
+double weighted_median(double *x, double *w, int begin, int end)
 {
    int n, i, median_index, median_in_lower, median_in_higher;
    double median, w_middle, w_lower_sum, w_higher_sum;
@@ -47,16 +47,7 @@ double weighted_median(double *x, double *w, int begin, int end, char break_tie)
       }
       else
       {
-         if (break_tie == 'l')
-            median_index = begin + (n - 1) / 2;  // Lower median index
-         else if (break_tie == 'h')
-            median_index = begin + n / 2;  // Higher median index
-         else
-         {
-            perror("break_tie argument can only be 'l' or 'h'");
-            exit(EXIT_FAILURE);
-         }
-
+         median_index = begin + (n - 1) / 2;  // Lower median index
          median = partition_on_kth_smallest_2d(xw, begin, end, 2, 0, median_index);
 
          w_middle = xw[median_index][1];

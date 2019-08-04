@@ -44,10 +44,9 @@ PyMODINIT_FUNC PyInit__robustats(void)
 static PyObject *robustats_weighted_median(PyObject *self, PyObject *args)
 {
     PyObject *x_obj, *w_obj;
-    char break_tie;
 
     // Parse the input tuple
-    if (!PyArg_ParseTuple(args, "OOc", &x_obj, &w_obj, &break_tie))
+    if (!PyArg_ParseTuple(args, "OO", &x_obj, &w_obj))
         return NULL;
 
     // Interpret the input objects as numpy arrays
@@ -69,7 +68,7 @@ static PyObject *robustats_weighted_median(PyObject *self, PyObject *args)
     double *w = (double*)PyArray_DATA(w_array);
 
     // Call the external C function to compute the chi-squared
-    double value = weighted_median(x, w, 0, n - 1, break_tie);
+    double value = weighted_median(x, w, 0, n - 1);
 
     // Clean up
     Py_DECREF(x_array);

@@ -18,12 +18,13 @@ You can install the library directly from GitHub using the following command.
 pip install -e 'git+https://github.com/FilippoBovo/robustats.git#egg=robustats'
 ```
 
-Otherwise, you may clone the repository and install it in the following way.
+Otherwise, you may clone the repository, and install and test the Robustats package in the following way.
 
 ```shell
 git clone https://github.com/FilippoBovo/robustats.git
 cd robustats
 pip install -e .
+python -m unittest
 ```
 
 ## How to Use
@@ -37,7 +38,7 @@ import robustats
 x = np.array([1.1, 5.3, 3.7, 2.1, 7.0, 9.9])
 weights = np.array([1.1, 0.4, 2.1, 3.5, 1.2, 0.8])
 
-weighted_median = robustats.weighted_median(x, w, break_tie='lower')
+weighted_median = robustats.weighted_median(x, weights)
 
 print("The weighted median is {}".format(weighted_median))
 
