@@ -22,11 +22,14 @@
 */
 double weighted_median(double *x, double *w, int begin, int end)
 {
-   int n, i, median_index, median_in_lower, median_in_higher;
-   double median, w_middle, w_lower_sum, w_higher_sum;
+   int n, i, median_index;
+   double median, w_middle;
+   double w_lower_sum, w_lower_sum_norm, w_higher_sum, w_higher_sum_norm;
    
    n = end - begin + 1;  // Length between begin and end
    double **xw = zip(x, w, n);
+
+   double w_sum = sum(w, n);
 
    while (1)
    {
@@ -55,30 +58,28 @@ double weighted_median(double *x, double *w, int begin, int end)
          w_lower_sum = 0.;
          for (i = begin; i < median_index; i++)
             w_lower_sum += xw[i][1];
+         w_lower_sum_norm = w_lower_sum / w_sum;
 
          w_higher_sum = 0.;
          for (i = median_index + 1; i <= end; i++)
             w_higher_sum += xw[i][1];
-
-         if (w_lower_sum > w_higher_sum + w_middle)
-            median_in_lower = 1;  // True (median in lower half)
-         else
-            median_in_lower = 0;  // False
-
-         if (w_lower_sum + w_middle < w_higher_sum)
-            median_in_higher = 1;  // True (median in higher half)
-         else
-            median_in_higher = 0;  // False
+         w_higher_sum_norm = w_higher_sum / w_sum;
          
-         if (!(median_in_lower || median_in_higher))
+         if (w_lower_sum_norm < 0.5 && w_higher_sum_norm < 0.5)
          {
             free_zip_memory(xw, n);
             return median;
          }
-         else if (median_in_lower)
+         else if (w_lower_sum_norm > 0.5)
+         {
+            xw[median_index][1] = xw[median_index][1] + w_higher_sum;
             end = median_index;
+         }
          else
+         {
+            xw[median_index][1] = xw[median_index][1] + w_lower_sum;
             begin = median_index;
+         }
       }
    }
 }
