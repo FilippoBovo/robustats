@@ -64,7 +64,29 @@ void swap_2d(double **x, int n2, int i, int j)
 }
 
 /**
- * Compare two arrays by comparing their k-th element.
+ * Compare two elements of an array.
+ * 
+ * This function can be used in combination with qsort to sort an array.
+ * 
+ * Arguments:
+ *    i: First element of the array.
+ *    j: Second element of the array.
+ * 
+ * Returns:
+ *    Floor different between i-th and j-th elements of the array.
+ */
+int compare(const void *i, const void* j)
+{
+   double a = *(double *)i;
+   double b = *(double *)j;
+
+   return (int)(a - b);
+}
+
+/**
+ * Compare two 2D arrays by comparing their k-th element.
+ * 
+ * This function can be used in combination with qsort to sort a 2D array.
  * 
  * Arguments:
  *    i: First array.
@@ -72,14 +94,14 @@ void swap_2d(double **x, int n2, int i, int j)
  *    k: Element along the arrays to compare.
  * 
  * Returns:
- *    Difference of the k-th element between the first and second arrays.
+ *    Floor difference of the k-th element between the first and second arrays.
  */
-int compare_element_in_arrays(const void *i, const void *j, int k)
+int compare_2d(const void *i, const void *j, int k)
 {
    double *a = *(double **)i;
    double *b = *(double **)j;
 
-   return a[k] - b[k];
+   return (int)(a[k] - b[k]);
 }
 
 /**

@@ -1,7 +1,8 @@
 double sum (double *x, int n);
 void swap(double *x, int i, int j);
 void swap_2d(double **x, int n2, int i, int j);
-int compare_element_in_arrays(const void *i, const void *j, int k);
+int compare(const void *i, const void *j);
+int compare_2d(const void *i, const void *j, int k);
 
 double random_0_to_1();
 int random_range(int begin, int end);
