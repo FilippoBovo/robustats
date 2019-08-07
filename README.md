@@ -1,6 +1,6 @@
 # Robustats
 
-Robustats is a Python library for the fast computation of robust statistical estimators.
+Robustats is a Python library for high-performance computation of robust statistical estimators.
 
 The functions that compute the robust estimators are [implemented in C](c) for speed and [called by Python](robustats).
 
@@ -56,8 +56,6 @@ Tips:
 
 ## References
 
-- \[1\] [Cormen, Leiserson, Rivest, Stein - Introduction to Algorithms (3rd Edition)](https://books.google.co.uk/books?id=aefUBQAAQBAJ&lpg=PR5&ots=dN8rWuZQaW&dq=Cormen%2C%20Leiserson%2C%20Rivest%2C%20Stein%20-%20Introduction%20to%20Algorithms&lr&pg=PP1#v=onepage&q&f=false).
-
-- \[2\] [Cormen - Introduction to Algorithms (3rd Edition) - Instructor's Manual](https://cdn.manesht.ir/19908/Introduction%20to%20Algorithms.pdf).
-
-- \[3\] [Weighted median on Wikipedia](https://en.wikipedia.org/wiki/Weighted_median).
+\[1\] [Cormen, Leiserson, Rivest, Stein - Introduction to Algorithms (3rd Edition)](https://books.google.co.uk/books?id=aefUBQAAQBAJ&lpg=PR5&ots=dN8rWuZQaW&dq=Cormen%2C%20Leiserson%2C%20Rivest%2C%20Stein%20-%20Introduction%20to%20Algorithms&lr&pg=PP1#v=onepage&q&f=false).
+\[2\] [Cormen - Introduction to Algorithms (3rd Edition) - Instructor's Manual](https://cdn.manesht.ir/19908/Introduction%20to%20Algorithms.pdf).
+\[3\] [Weighted median on Wikipedia](https://en.wikipedia.org/wiki/Weighted_median).
