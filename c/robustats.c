@@ -193,7 +193,7 @@ double medcouple(double *x, int64_t n, double epsilon1, double epsilon2)
    // stability.
    double scale_factor = 2 * max(x[0] - median, median - x[n - 1]);
 
-   // Create x_plus
+   // Create z_plus
    int64_t lowest_median_index = median_index;
    double lowest_median = median;
    while(lowest_median == median)
