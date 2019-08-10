@@ -1,22 +1,77 @@
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include "base.h"
 
 /**
- * Sum an array.
+ * Returns the higher of two numbers.
  * 
  * Arguments:
- *    x: Array.
+ *    a: First number.
+ *    b: Second number.
+ * 
+ * Returns:
+ *    Higher of the two numbers.
+ */
+double max(double a, double b)
+{
+   return a >= b ? a : b;
+}
+
+/**
+ * Returns the sign of a number.
+ * 
+ * Arguments:
+ *    x: Number.
+ * 
+ * Returns:
+ *    Sign of the input number.
+ */
+double sign(double x)
+{
+   if (x > 0.0)
+      return 1.0;
+   else if (x < 0.0)
+      return -1.0;
+   else
+      return 0.0;
+}
+
+/**
+ * Sum an array of integers.
+ * 
+ * Arguments:
+ *    x: Array of integers.
  *    n: Length of the array.
  * 
  * Returns:
- *    Sum of the array of numbers.
+ *    Sum of the array of integers.
  */
-double sum(double *x, int n)
+int64_t sum_int(int64_t *x, int64_t n)
+{
+   int64_t sum = 0;
+
+   for (int64_t i = 0; i < n; i++)
+      sum += x[i];
+
+   return sum;
+}
+
+/**
+ * Sum an array of doubles.
+ * 
+ * Arguments:
+ *    x: Array of doubles.
+ *    n: Length of the array.
+ * 
+ * Returns:
+ *    Sum of the array of doubles.
+ */
+double sum_double(double *x, int64_t n)
 {
    double sum = 0;
 
-   for (int i = 0; i < n; i++)
+   for (int64_t i = 0; i < n; i++)
       sum += x[i];
 
    return sum;
@@ -30,7 +85,7 @@ double sum(double *x, int n)
  *    i: index of the first element to swap.
  *    j: index of the second element to swap.
  */
-void swap(double *x, int i, int j)
+void swap(double *x, int64_t i, int64_t j)
 {
    double temp = x[i];
    x[i] = x[j];
@@ -51,11 +106,11 @@ void swap(double *x, int i, int j)
  *    i: First row of elements to swap.
  *    j: Second row of elements to swap.
  */
-void swap_2d(double **x, int n2, int i, int j)
+void swap_2d(double **x, int64_t n2, int64_t i, int64_t j)
 {
    double temp;
 
-   for (int k = 0; k < n2; k++)
+   for (int64_t k = 0; k < n2; k++)
    {
       temp = x[i][k];
       x[i][k] = x[j][k];
@@ -64,9 +119,9 @@ void swap_2d(double **x, int n2, int i, int j)
 }
 
 /**
- * Compare two elements of an array.
+ * Compare two elements of an array to be sorted ascendingly.
  * 
- * This function can be used in combination with qsort to sort an array.
+ * This function can to be used in combination with qsort to sort an array.
  * 
  * Arguments:
  *    i: First element of the array.
@@ -75,33 +130,94 @@ void swap_2d(double **x, int n2, int i, int j)
  * Returns:
  *    Floor different between i-th and j-th elements of the array.
  */
-int compare(const void *i, const void* j)
+int compare_ascending(const void *i, const void* j)
 {
    double a = *(double *)i;
    double b = *(double *)j;
 
-   return (int)(a - b);
+   if (a > b)
+      return 1;
+   else if (a < b)
+      return -1;
+   else
+      return 0;
 }
 
 /**
- * Compare two 2D arrays by comparing their k-th element.
+ * Compare two elements of an array to be sorted descendingly.
+ * 
+ * This function can to be used in combination with qsort to sort an array.
+ * 
+ * Arguments:
+ *    i: First element of the array.
+ *    j: Second element of the array.
+ * 
+ * Returns:
+ *    Floor different between j-th and i-th elements of the array.
+ */
+int compare_descending(const void *i, const void* j)
+{
+   double a = *(double *)i;
+   double b = *(double *)j;
+
+   if (a > b)
+      return -1;
+   else if (a < b)
+      return 1;
+   else
+      return 0;
+}
+
+/**
+ * Compare two elements of a 2D array to be sorted ascendingly in the first axis.
  * 
  * This function can be used in combination with qsort to sort a 2D array.
  * 
  * Arguments:
- *    i: First array.
- *    j: Second array.
- *    k: Element along the arrays to compare.
+ *    i: First 1D array.
+ *    j: Second 1D array.
+ *    k: Element along the second axis of the array to compare.
  * 
  * Returns:
- *    Floor difference of the k-th element between the first and second arrays.
+ *    Floor difference between the k-th element of the i-th and j-th 1D arrays.
  */
-int compare_2d(const void *i, const void *j, int k)
+int compare_ascending_2d(const void *i, const void *j, int64_t k)
 {
    double *a = *(double **)i;
    double *b = *(double **)j;
 
-   return (int)(a[k] - b[k]);
+   if (a[k] > b[k])
+      return 1;
+   else if (a[k] < b[k])
+      return -1;
+   else
+      return 0;
+}
+
+/**
+ * Compare two elements of a 2D array to be sorted descendingly in the first axis.
+ * 
+ * This function can be used in combination with qsort to sort a 2D array.
+ * 
+ * Arguments:
+ *    i: First 1D array.
+ *    j: Second 1D array.
+ *    k: Element along the second axis of the array to compare.
+ * 
+ * Returns:
+ *    Floor difference between the k-th element of the j-th and i-th 1D arrays.
+ */
+int compare_descending_2d(const void *i, const void *j, int64_t k)
+{
+   double *a = *(double **)i;
+   double *b = *(double **)j;
+
+   if (a[k] > b[k])
+      return -1;
+   else if (a[k] < b[k])
+      return 1;
+   else
+      return 0;
 }
 
 /**
@@ -115,9 +231,37 @@ double random_0_to_1()
 /**
  * Returns a random integer between 'begin' and 'end', extremes included.
  */
-int random_range(int begin, int end)
+int64_t random_range(int64_t begin, int64_t end)
 {
-   return begin + (int)(random_0_to_1() * (end - begin + 1));
+   return begin + (int64_t)(random_0_to_1() * (end - begin + 1));
+}
+
+/**
+ * Fill an array of integers with a single value.
+ * 
+ * Arguments:
+ *    x: Array.
+ *    n: Length of the array.
+ *    value: Value to fill the array with.
+ */
+void fill_array_int(int64_t *x, int64_t n, int64_t value)
+{
+   for (int64_t i = 0; i < n; i++)
+      x[i] = value;
+}
+
+/**
+ * Copy an array of integers into another array of integers.
+ * 
+ * Arguments:
+ *    x: Array to copy.
+ *    y: New copy array.
+ *    n: Length of the arrays.
+ */
+void copy_array_int(int64_t *x, int64_t *y, int64_t n)
+{
+   for (int64_t i = 0; i < n; i++)
+      y[i] = x[i];
 }
 
 /**
@@ -136,11 +280,11 @@ int random_range(int begin, int end)
  * Returns:
  *    Zipped array.
  */
-double **zip(double *array_a, double *array_b, int n)
+double **zip(double *array_a, double *array_b, int64_t n)
 {
    double **zip_arr = (double**)malloc(n * sizeof(double*));
 
-   for(int i = 0; i < n; i++) {
+   for(int64_t i = 0; i < n; i++) {
       zip_arr[i] = (double*)malloc(2 * sizeof(double));
       zip_arr[i][0] = array_a[i];
       zip_arr[i][1] = array_b[i];
@@ -156,9 +300,9 @@ double **zip(double *array_a, double *array_b, int n)
  *    zip_arr: Zipped array obtained with function 'zip' above.
  *    n: Length of the zipped array.
  */
-void free_zip_memory(double **zip_array, int n)
+void free_zip_memory(double **zip_array, int64_t n)
 {
-   for (int i = 0; i < n; i++)
+   for (int64_t i = 0; i < n; i++)
       free(zip_array[i]);
 
    free(zip_array);
@@ -185,10 +329,10 @@ void free_zip_memory(double **zip_array, int n)
  * Returns:
  *    Starting index of the region greater than or equal to the pivot.
  */
-int partition_on_value(double *x, int begin, int end, double value)
+int64_t partition_on_value(double *x, int64_t begin, int64_t end, double value)
 {
-   int i = begin;
-   int j = begin;
+   int64_t i = begin;
+   int64_t j = begin;
 
    while (i <= end)
    {
@@ -227,14 +371,14 @@ int partition_on_value(double *x, int begin, int end, double value)
  * Returns:
  *    Index of the pivot, separating the lower and the higher regions.
  */
-int partition_on_kth_element(double *x, int begin, int end, int k)
+int64_t partition_on_kth_element(double *x, int64_t begin, int64_t end, int64_t k)
 {
    double value = x[k];
 
    swap(x, k, end);
 
-   int i = begin;
-   for (int j = begin; j < end; j++)
+   int64_t i = begin;
+   for (int64_t j = begin; j < end; j++)
    {
       if (x[j] < value)
       {
@@ -274,14 +418,14 @@ int partition_on_kth_element(double *x, int begin, int end, int k)
  * Returns:
  *    Index of the pivot, separating the lower and the higher regions.
  */
-int partition_on_kth_element_2d(double **x, int begin, int end, int n2, int m, int k)
+int64_t partition_on_kth_element_2d(double **x, int64_t begin, int64_t end, int64_t n2, int64_t m, int64_t k)
 {
    double value = x[k][m];
 
    swap_2d(x, n2, k, end);
 
-   int i = begin;
-   for (int j = begin; j < end; j++)
+   int64_t i = begin;
+   for (int64_t j = begin; j < end; j++)
    {
       if (x[j][m] < value)
       {
@@ -320,14 +464,14 @@ int partition_on_kth_element_2d(double **x, int begin, int end, int n2, int m, i
  *    Value of the pivot, separating the lower and the higher regions. The
  *       pivot is the k-th smallest element of the array.
  */
-double partition_on_kth_smallest(double *x, int begin, int end, int k)
+double partition_on_kth_smallest(double *x, int64_t begin, int64_t end, int64_t k)
 {
    while (1)
    {
       if (begin == end)
          return x[begin];
 
-      int pivot_index = random_range(begin, end);
+      int64_t pivot_index = random_range(begin, end);
       pivot_index = partition_on_kth_element(x, begin, end, pivot_index);
 
       if (k == pivot_index)
@@ -368,14 +512,14 @@ double partition_on_kth_smallest(double *x, int begin, int end, int k)
  *    Value of the pivot, separating the lower and the higher regions. The
  *       pivot is the k-th smallest element of the m-th row of the array.
  */
-double partition_on_kth_smallest_2d(double **x, int begin, int end, int n2, int m, int k)
+double partition_on_kth_smallest_2d(double **x, int64_t begin, int64_t end, int64_t n2, int64_t m, int64_t k)
 {
    while (1)
    {
       if (begin == end)
          return x[begin][m];
 
-      int pivot_index = random_range(begin, end);
+      int64_t pivot_index = random_range(begin, end);
       pivot_index = partition_on_kth_element_2d(x, begin, end, n2, m, pivot_index);
 
       if (k == pivot_index)
@@ -398,10 +542,10 @@ double partition_on_kth_smallest_2d(double **x, int begin, int end, int n2, int 
  * Returns:
  *    K-th smallest element of the array.
  */
-double select(double *x, int n, int k)
+double select_kth_smallest(double *x, int64_t n, int64_t k)
 {
    double *x_copy = malloc(n * sizeof(double));
-   for (int i = 0; i < n; i++)
+   for (int64_t i = 0; i < n; i++)
    {
       x_copy[i] = x[i];
    }

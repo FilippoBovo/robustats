@@ -87,3 +87,57 @@ class TestWeightedMedian(unittest.TestCase):
         ]
         weighted_median = robustats.weighted_median(x, weights)
         self.assertEqual(weighted_median, 0.36)
+
+
+class TestWeightedMedcouple(unittest.TestCase):
+    def test_homogeneous_sample_1(self):
+        x = [1., 2., 3.]
+        weighted_median = robustats.medcouple(x)
+        self.assertEqual(weighted_median, 0.)
+
+    def test_homogeneous_sample_2(self):
+        x = [-1., 0., 1.]
+        weighted_median = robustats.medcouple(x)
+        self.assertEqual(weighted_median, 0.)
+
+    def test_homogeneous_sample_3(self):
+        x = [1., 2., 3., 4., 5., 6.]
+        weighted_median = robustats.medcouple(x)
+        self.assertEqual(weighted_median, 0.)
+
+    def test_generic_1(self):
+        x = [1., 2., 2., 2., 3., 4., 5., 6.]
+        weighted_median = robustats.medcouple(x)
+        self.assertEqual(weighted_median, 1.)
+
+    def test_generic_2(self):
+        x = [0.2, 0.17, 0.08, 0.16, 0.88, 0.86, 0.09, 0.54, 0.27, 0.14]
+        weighted_median = robustats.medcouple(x)
+        self.assertEqual(weighted_median, 0.7692307692307692)
+
+    def test_generic_3(self):
+        x = [
+            0.61, 0.96, 0.76, 0.69, 0.18, 0.81, 0.32, 0.69, 0.91, 0.37, 0.0,
+            0.66, 0.99, 0.59, 0.73, 0.41, 0.28, 0.45, 0.63, 0.03
+        ]
+        weighted_median = robustats.medcouple(x)
+        self.assertEqual(weighted_median, -0.3333333333333333)
+
+    def test_generic_4(self):
+        x = [
+            0.44, 0.66, 0.18, 0.51, 0.34, 0.7, 0.86, 0.97, 0.15, 0.53, 0.85,
+            0.28, 0.13, 0.74, 0.52, 0.21, 0.87, 0.7, 0.17, 0.84, 0.86, 0.01,
+            0.42, 0.27, 0.22, 0.88, 0.16, 0.57, 0.66, 0.88
+        ]
+        weighted_median = robustats.medcouple(x)
+        self.assertEqual(weighted_median, -0.014925373134328474)
+
+    def test_generic_5(self):
+        x = [
+            0.7, 0.49, 0.07, 0.4, 0.44, 0.36, 0.02, 0.88, 0.94, 0.9, 0.46,
+            0.93, 0.81, 0.92, 0.32, 0.43, 0.64, 0.01, 0.37, 0.46, 0.47, 0.13,
+            0.29, 0.1, 0.04, 0.9, 0.55, 0.27, 0.28, 0.46, 0.46, 0.1, 0.81,
+            0.55, 0.95, 0.58, 0.12, 0.61, 0.92, 0.93
+        ]
+        weighted_median = robustats.medcouple(x)
+        self.assertEqual(weighted_median, 0.11363636363636356)
