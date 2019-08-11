@@ -19,6 +19,7 @@ setup(
         'Programming Language :: Python :: 3',
     ],
     url='https://github.com/FilippoBovo/robustats',
+    download_url='https://github.com/FilippoBovo/robustats/archive/v0.1.tar.gz',
     author = 'Filippo Bovo',
     author_email = 'bovo.filippo@gmail.com',
     license='MIT',
