@@ -13,7 +13,8 @@ source_paths = [os.path.join(source_dir, file) for file in source_files]
 setup(
     name = 'robustats',
     version = '0.1',
-    description = 'Robust statistics',
+    description = 'Robustats is a Python library for high-performance '
+                  'computation of robust statistical estimators.',
     classifiers=[
         'Programming Language :: Python :: 3',
     ],
