@@ -7,7 +7,8 @@ The functions that compute the robust estimators are [implemented in C](c) for s
 Estimators implemented in the library:
 
 - **Weighted Median** (temporal complexity: `O(n)`) \[1, 2, 3\]
-- **Medcouple** (temporal complexity: `O(n * log(n)))`) [4, 5, 6, 7]
+- **Medcouple** (temporal complexity: `O(n * log(n))`) [4, 5, 6, 7]
+- **Mode** (temporal complexity: `O(n * log(n))`) [8]
 
 ## How to Install
 
@@ -54,6 +55,15 @@ medcouple = robustats.medcouple(x)
 
 print("The medcouple is {}".format(medcouple))
 # Output: The medcouple is 0.7692307692307692
+
+
+# Mode
+x = np.array([1., 2., 2., 3., 3., 3., 4., 4., 5.])
+
+mode = robustats.mode(x)
+
+print("The mode is {}".format(mode))
+# Output: The mode is 3.0
 ```
 
 ## How to Contribute
@@ -80,3 +90,5 @@ Tips:
 \[6\] [Medcouple implementation in Python by Jordi Gutiérrez Hermoso.](http://inversethought.com/hg/)
 
 \[7\] [Medcouple on Wikipedia.](https://en.wikipedia.org/wiki/Medcouple)
+
+\[8\] [David R. Bickel, Rudolf Frühwirth. "On a fast, robust estimator of the mode: Comparisons to other robust estimators with applications", *Computational Statistics & Data Analysis*, Volume 50, Issue 12, 2006, Pages 3500-3530, ISSN 0167-9473.](https://doi.org/10.1016/j.csda.2005.07.011)

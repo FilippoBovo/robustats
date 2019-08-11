@@ -67,3 +67,27 @@ def medcouple(x: Union[List[float], np.ndarray]) -> float:
         )
 
     return _robustats.medcouple(x, epsilon1, epsilon2)
+
+
+def mode(x: Union[List[float], np.ndarray]) -> float:
+    """Calculate the mode of a list of numbers.
+
+    Args:
+        x: List or Numpy array.
+
+    Returns:
+        Mode.
+
+    Examples:
+        >>> mode(x=[1., 2., 3., 4., 5.])
+        2.0
+        >>> mode(x=[1., 2., 3., 3., 4., 5.])
+        3.0
+        >>> mode(x=[1., 2., 2., 3., 3., 3., 4., 4., 5.])
+        3.0
+        >>> mode(x=[1., 2., 3., 3., 3., 4., 4., 4., 4., 5.])
+        3.0
+        >>> mode(x=[1., 2., 3., 3., 3., 4., 4., 4., 4., 4., 5., 6., 7.])
+        4.0
+    """
+    return _robustats.mode(x)

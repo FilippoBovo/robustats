@@ -89,7 +89,7 @@ class TestWeightedMedian(unittest.TestCase):
         self.assertEqual(weighted_median, 0.36)
 
 
-class TestWeightedMedcouple(unittest.TestCase):
+class TestMedcouple(unittest.TestCase):
     def test_homogeneous_sample_1(self):
         x = [1., 2., 3.]
         weighted_median = robustats.medcouple(x)
@@ -141,3 +141,80 @@ class TestWeightedMedcouple(unittest.TestCase):
         ]
         weighted_median = robustats.medcouple(x)
         self.assertEqual(weighted_median, 0.11363636363636356)
+
+
+class TestMode(unittest.TestCase):
+    def test_homogeneous_sample(self):
+        x = [1., 2., 3., 4., 5.]
+        mode = robustats.mode(x)
+        self.assertEqual(mode, 2.)
+
+    def test_generic_1(self):
+        x = [1., 2., 3., 3., 4., 5.]
+        mode = robustats.mode(x)
+        self.assertEqual(mode, 3.)
+
+    def test_generic_2(self):
+        x = [1., 2., 2., 3., 3., 3., 4., 4., 5.]
+        mode = robustats.mode(x)
+        self.assertEqual(mode, 3.)
+
+    def test_generic_3(self):
+        x = [1., 2., 3., 3., 3., 4., 4., 4., 4., 5.]
+        mode = robustats.mode(x)
+        self.assertEqual(mode, 3.)
+
+    def test_generic_4(self):
+        x = [1., 2., 3., 3., 3., 4., 4., 4., 4., 4., 5., 6., 7.]
+        mode = robustats.mode(x)
+        self.assertEqual(mode, 4.)
+
+    def test_gaussian_1(self):
+        # Gaussian distribution with mu = 1.0 and sigma = 0.2 --> mode = 1.0
+        x = [1.06, 1.25, 0.99, 1.07, 1.46, 1.02, 1.14, 1.04, 0.6, 1.0]
+        mode = robustats.mode(x)
+        self.assertEqual(mode, 0.995)
+
+    def test_gaussian_2(self):
+        # Gaussian distribution with mu = 3.0 and sigma = 0.5 --> mode = 3.0
+        x = [
+            2.89, 3.32, 3.19, 3.35, 3.84, 3.22, 3.46, 3.45, 3.06, 3.59, 2.44,
+            3.51, 3.73, 3.35, 2.26, 2.0, 2.15, 3.25, 3.21, 3.4
+        ]
+        mode = robustats.mode(x)
+        self.assertEqual(mode, 3.35)
+
+    def test_gaussian_3(self):
+        # Gaussian distribution with mu = 10.0 and sigma = 1.0 --> mode = 10.0
+        x = [
+            9.67, 10.43, 8.34, 8.47, 10.31, 11.01, 9.99, 10.72, 8.61, 11.33,
+            10.87, 9.38, 8.79, 9.07, 10.7, 11.14, 9.73, 9.72, 9.8, 12.06,
+            10.99, 10.12, 10.67, 9.71, 9.74, 9.85, 8.65, 8.71, 10.07, 8.54
+        ]
+        mode = robustats.mode(x)
+        self.assertEqual(mode, 9.715)
+
+    def test_gamma_1(self):
+        # Gamma distribution with alpha = 11.0 and beta = 10.0 --> mode = 1.0
+        x = [1.17, 0.82, 0.85, 2.1, 1.35, 1.21, 1.07, 0.81, 1.09, 1.27]
+        mode = robustats.mode(x)
+        self.assertEqual(mode, 1.08)
+
+    def test_gamma_2(self):
+        # Gamma distribution with alpha = 21.0 and beta = 10.0 --> mode = 2.0
+        x = [
+            2.04, 2.22, 2.27, 1.71, 2.45, 1.55, 2.38, 2.15, 1.95, 3.34, 2.74,
+            1.92, 1.68, 2.1, 2.13, 2.6, 1.36, 2.25, 2.85, 1.55
+        ]
+        mode = robustats.mode(x)
+        self.assertEqual(mode, 2.26)
+
+    def test_gamma_3(self):
+        # Gamma distribution with alpha = 61.0 and beta = 20.0 --> mode = 3.0
+        x = [
+            2.95, 2.29, 3.24, 3.57, 3.7, 3.0, 3.07, 3.73, 2.98, 2.96, 2.59,
+            3.61, 3.09, 2.65, 2.37, 2.66, 2.88, 2.92, 2.3, 3.9, 3.49, 3.67,
+            2.09, 2.98, 2.52, 3.37, 3.29, 3.18, 3.16, 2.68
+        ]
+        mode = robustats.mode(x)
+        self.assertEqual(mode, 2.98)

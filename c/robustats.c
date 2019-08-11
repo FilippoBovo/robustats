@@ -337,3 +337,65 @@ double medcouple(double *x, int64_t n, double epsilon1, double epsilon2)
 
    return medcouple_;
 }
+
+/**
+ * Mode.
+ * 
+ * Arguments:
+ *    x: Array.
+ *    x: Length of the array.
+ * 
+ * Returns:
+ *    Mode.
+ */
+double mode(double *x, int64_t n)
+{
+   int64_t m, m_half, i, j;
+   double width, min_width;
+
+   // Sort x ascendingly
+   qsort(x, n, sizeof(double), compare_ascending);
+
+   int64_t begin = 0;
+   int64_t end = n - 1;
+
+   while(1)
+   {
+      m = end - begin + 1;
+
+      if (m == 1)
+         return x[begin];
+      else if (m == 2)
+         return (x[begin] + x[end]) / 2.;
+      else if (m == 3)
+      {
+         if (x[begin + 1] - x[begin] < x[end] - x[begin + 1])
+            return (x[begin] + x[begin + 1]) / 2.;
+         else if (x[begin + 1] - x[begin] > x[end] - x[begin + 1])
+            return (x[begin + 1] + x[end]) / 2.;
+         else
+            return x[begin + 1];
+      }
+      else
+      {
+         min_width = x[end] - x[begin];
+
+         m_half = (m + 1) / 2;
+
+         j = begin;
+         for (i = begin; i <= begin + m - m_half; i++)
+         {
+            width = x[i + m_half - 1] - x[i];
+
+            if (width < min_width)
+            {
+               min_width = width;
+               j = i;
+            }
+         }
+
+         begin = j;
+         end = j + m_half - 1;
+      }
+   }
+}
