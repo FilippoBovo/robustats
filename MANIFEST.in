@@ -1,0 +1,3 @@
+include README.md
+recursive-include c *.c *.h
+recursive-include robustats *.py
