@@ -28,7 +28,8 @@ setup(
     ext_modules=[
         Extension(
             name="_robustats",
-            sources=["c/_robustats.c", "c/robustats.c", "c/base.c"]
+            sources=["c/_robustats.c", "c/robustats.c", "c/base.c"],
+            extra_compile_args=["-std=c99"]
         )
     ],
     include_dirs=numpy.distutils.misc_util.get_numpy_include_dirs(),
