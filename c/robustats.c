@@ -23,14 +23,14 @@
 */
 double weighted_median(double *x, double *w, int64_t begin, int64_t end)
 {
-   int64_t dn, n, i, median_index;
+   int64_t xw_n, n, i, median_index;
    double median, w_middle;
    double w_lower_sum, w_lower_sum_norm, w_higher_sum, w_higher_sum_norm;
    
-   dn = end - begin + 1;  // Length between begin and end
-   double **xw = zip(x, w, dn);
+   xw_n = end - begin + 1;  // Length between begin and end
+   double **xw = zip(x, w, xw_n);
 
-   double w_sum = sum_double(w, dn);
+   double w_sum = sum_double(w, xw_n);
 
    while (1)
    {
@@ -38,12 +38,12 @@ double weighted_median(double *x, double *w, int64_t begin, int64_t end)
 
       if (n == 1)
       {
-         free_zip_memory(xw, dn);
+         free_zip_memory(xw, xw_n);
          return x[begin];
       }
       else if (n == 2)
       {
-         free_zip_memory(xw, dn);
+         free_zip_memory(xw, xw_n);
          if (w[begin] >= w[end])
             return x[begin];
          else
@@ -69,7 +69,7 @@ double weighted_median(double *x, double *w, int64_t begin, int64_t end)
          
          if (w_lower_sum_norm < 0.5 && w_higher_sum_norm < 0.5)
          {
-            free_zip_memory(xw, dn);
+            free_zip_memory(xw, xw_n);
             return median;
          }
          else if (w_lower_sum_norm > 0.5)

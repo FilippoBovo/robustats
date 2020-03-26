@@ -550,7 +550,8 @@ double select_kth_smallest(double *x, int64_t n, int64_t k)
       x_copy[i] = x[i];
    }
 
-   double ret = partition_on_kth_smallest(x_copy, 0, n - 1, k);
+   double kth_smallest = partition_on_kth_smallest(x_copy, 0, n - 1, k);
    free(x_copy);
-   return ret;
+
+   return kth_smallest;
 }
