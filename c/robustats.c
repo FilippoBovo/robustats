@@ -108,7 +108,7 @@ double h_kernel(
  */
 void where_h_greater_than_u(
    int64_t *p, int64_t n_p, double *z_plus, int64_t n_plus, double *z_minus, int64_t n_minus,
-   double u, double epsilon
+   double u, double epsilon, double k_epsilon
    )
 {
    fill_array_int(p, n_p, 0);
@@ -118,12 +118,12 @@ void where_h_greater_than_u(
 
    for (int64_t i = n_plus - 1; i >= 0; i--)
    {  
-      h = h_kernel(i, j, z_plus, n_plus, z_minus, n_minus, epsilon);
+      h = h_kernel(i, j, z_plus, n_plus, z_minus, n_minus, k_epsilon);
 
       while (j < n_minus && h - u > epsilon)
       {
          j++;
-         h = h_kernel(i, j, z_plus, n_plus, z_minus, n_minus, epsilon);
+         h = h_kernel(i, j, z_plus, n_plus, z_minus, n_minus, k_epsilon);
       }
       
       p[i] = j - 1;
@@ -135,7 +135,7 @@ void where_h_greater_than_u(
  */
 void where_h_less_than_u(
    int64_t *q, int64_t n_q, double *z_plus, int64_t n_plus, double *z_minus, int64_t n_minus,
-   double u, double epsilon
+   double u, double epsilon, double k_epsilon
    )
 {
    fill_array_int(q, n_q, 0);
@@ -145,12 +145,12 @@ void where_h_less_than_u(
 
    for (int64_t i = 0; i < n_plus; i++)
    {  
-      h = h_kernel(i, j, z_plus, n_plus, z_minus, n_minus, epsilon);
+      h = h_kernel(i, j, z_plus, n_plus, z_minus, n_minus, k_epsilon);
 
       while (j >= 0 && h - u < -epsilon)
       {
          j--;
-         h = h_kernel(i, j, z_plus, n_plus, z_minus, n_minus, epsilon);
+         h = h_kernel(i, j, z_plus, n_plus, z_minus, n_minus, k_epsilon);
       }
       
       q[i] = j + 1;
@@ -269,10 +269,10 @@ double medcouple(double *x, int64_t n, double epsilon1, double epsilon2)
       wm_epsilon = epsilon1 * (epsilon1 + fabs(w_median));
       where_h_greater_than_u(
          right_border_tent, n_plus, z_plus, n_plus, z_minus, n_minus, w_median,
-         wm_epsilon);
+         wm_epsilon, epsilon2);
       where_h_less_than_u(
          left_border_tent, n_plus, z_plus, n_plus, z_minus, n_minus, w_median,
-         wm_epsilon);
+         wm_epsilon, epsilon2);
 
       right_tent_total = sum_int(right_border_tent, n_plus) + n_plus;
       left_tent_total = sum_int(left_border_tent, n_plus);
