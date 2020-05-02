@@ -1,5 +1,3 @@
-import os
-
 from setuptools import setup, Extension
 import numpy.distutils.misc_util
 
@@ -10,7 +8,7 @@ with open("README.md", "r") as f:
 
 setup(
     name = 'robustats',
-    version = '0.1.4',
+    version = '0.1.5',
     description = 'Robustats is a Python library for high-performance '
                   'computation of robust statistical estimators.',
     long_description=long_description,
@@ -19,7 +17,7 @@ setup(
         'Programming Language :: Python :: 3',
     ],
     url='https://github.com/FilippoBovo/robustats',
-    download_url='https://github.com/FilippoBovo/robustats/archive/v0.1.2.tar.gz',
+    download_url='https://github.com/FilippoBovo/robustats/archive/v0.1.5.tar.gz',
     author = 'Filippo Bovo',
     author_email = 'bovo.filippo@gmail.com',
     license='MIT',
