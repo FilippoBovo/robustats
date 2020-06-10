@@ -4,21 +4,6 @@
 #include "base.h"
 
 /**
- * Returns the higher of two numbers.
- * 
- * Arguments:
- *    a: First number.
- *    b: Second number.
- * 
- * Returns:
- *    Higher of the two numbers.
- */
-double max(double a, double b)
-{
-   return a >= b ? a : b;
-}
-
-/**
  * Returns the sign of a number.
  * 
  * Arguments:

@@ -125,3 +125,6 @@ dmypy.json
 
 # Playground code
 playground
+
+# PyCharm
+.idea/
