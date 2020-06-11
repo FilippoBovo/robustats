@@ -24,7 +24,7 @@
 double weighted_median(double *x, double *w, int64_t begin, int64_t end)
 {
    int64_t xw_n, n, i, median_index;
-   double median, w_middle;
+   double median;
    double w_lower_sum, w_lower_sum_norm, w_higher_sum, w_higher_sum_norm;
    
    xw_n = end - begin + 1;  // Length between begin and end
@@ -52,10 +52,7 @@ double weighted_median(double *x, double *w, int64_t begin, int64_t end)
       else
       {
          median_index = begin + (n - 1) / 2;  // Lower median index
-         median = partition_on_kth_smallest_2d(
-            xw, begin, end, 2, 0, median_index);
-
-         w_middle = xw[median_index][1];
+         median = partition_on_kth_smallest_2d(xw, begin, end, 2, 0, median_index);
 
          w_lower_sum = 0.;
          for (i = begin; i < median_index; i++)
