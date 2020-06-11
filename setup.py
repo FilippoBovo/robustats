@@ -1,5 +1,11 @@
 from setuptools import setup, Extension
-import numpy.distutils.misc_util
+
+try:
+    import numpy.distutils.misc_util
+except ModuleNotFoundError:
+    from setuptools import dist
+    dist.Distribution().fetch_build_eggs(['numpy'])
+    import numpy.distutils.misc_util
 
 
 with open("README.md", "r") as f:
