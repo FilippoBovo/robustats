@@ -60,7 +60,7 @@ x = np.array([0.2, 0.17, 0.08, 0.16, 0.88, 0.86, 0.09, 0.54, 0.27, 0.14])
 medcouple = robustats.medcouple(x)
 
 print("The medcouple is {}".format(medcouple))
-# Output: The medcouple is 0.7692307692307692
+# Output: The medcouple is 0.7749999999999999
 
 
 # Mode
