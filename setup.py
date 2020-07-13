@@ -7,7 +7,7 @@ with open("README.md", "r") as f:
 
 
 setup(
-    name = 'robustats',
+    name = 'ayx-robustats',
     version = '0.1.5',
     description = 'Robustats is a Python library for high-performance '
                   'computation of robust statistical estimators.',
@@ -21,7 +21,7 @@ setup(
     author = 'Filippo Bovo',
     author_email = 'bovo.filippo@gmail.com',
     license='MIT',
-    packages=['robustats'],
+    packages=['ayx_robustats'],
     install_requires=['numpy'],
     ext_modules=[
         Extension(
