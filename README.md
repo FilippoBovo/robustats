@@ -79,7 +79,7 @@ If you wish to contribute to this library, please follow the patterns and style 
 Moreover, install the Git hooks.
 
 ```shell
-
+git config core.hooksPath .githooks
 ```
 
 
