@@ -1,8 +1,9 @@
 import sys
 from typing import List, Union
 
-import _robustats
 import numpy as np
+
+import _robustats
 
 
 def weighted_median(x: Union[List[float], np.ndarray], weights: Union[List[float], np.ndarray]) -> float:
