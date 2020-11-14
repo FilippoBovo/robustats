@@ -188,7 +188,7 @@ double medcouple(double *x, int64_t n, double epsilon1, double epsilon2)
 
    // To rescale z_minus and z_plus inside [-0.5, 0.5], for greater numerical
    // stability.
-   double scale_factor = 2 * max(x[0] - median, median - x[n - 1]);
+   double scale_factor = 2 * max_(x[0] - median, median - x[n - 1]);
 
    // Create z_plus
    int64_t lowest_median_index = median_index;

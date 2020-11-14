@@ -13,7 +13,7 @@
  * Returns:
  *    Higher of the two numbers.
  */
-double max(double a, double b)
+double max_(double a, double b)
 {
    if (a >= b)
       return a;
