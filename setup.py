@@ -15,7 +15,7 @@ with open("README.md", "r") as f:
 
 setup(
     name="robustats",
-    version="0.1.5",
+    version="0.1.6",
     description="Robustats is a Python library for high-performance computation" " of robust statistical estimators.",
     long_description=long_description,
     long_description_content_type="text/markdown",
