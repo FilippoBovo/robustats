@@ -12,7 +12,6 @@ pathspec==0.8.1
 pycodestyle==2.6.0
 pyflakes==2.2.0
 regex==2020.11.13
--e git+git@github.com:FilippoBovo/robustats.git@beef2bc5a5f5b71ec157f9b6e210cc76ebfed62e#egg=robustats
 toml==0.10.2
 typed-ast==1.4.1
 typing-extensions==3.7.4.3
