@@ -1,0 +1,37 @@
+#!/bin/sh
+BOLD_TEXT=$(tput bold)
+NORMAL_TEXT=$(tput sgr0)
+
+EXIT_STATUS=0
+
+# Format the code
+GIT_STAGED_FILES=$(git diff --name-only --cached)
+printf "%sFORMATTING THE CODE%s\n\n" "$BOLD_TEXT" "$NORMAL_TEXT"
+./utilities/format_code.sh
+git add $GIT_STAGED_FILES
+
+# Validate the code
+printf "\n%sVALIDATING THE CODE FORMAT%s\n\n" "$BOLD_TEXT" "$NORMAL_TEXT"
+./utilities/validate_code.sh
+if [ $? -ne 0 ]
+then
+  EXIT_STATUS=1
+fi
+
+# Run tests
+printf "\n%sRUNNING THE TESTS%s\n\n" "$BOLD_TEXT" "$NORMAL_TEXT"
+python -m unittest
+if [ $? -ne 0 ]
+then
+  EXIT_STATUS=1
+fi
+
+# Exit with status 1 if there are issues found in the code, otherwise exit with status 0
+if [ $EXIT_STATUS -eq 0 ]
+then
+  printf "\n%sCOMMITTING THE CODE%s ✅\n\n" "$BOLD_TEXT" "$NORMAL_TEXT"
+  exit 0
+else
+  printf "\n%sISSUES FOUND - ABORTING THE COMMIT%s ❌\n\n" "$BOLD_TEXT" "$NORMAL_TEXT"
+  exit 1
+fi

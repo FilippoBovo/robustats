@@ -76,6 +76,14 @@ print("The mode is {}".format(mode))
 
 If you wish to contribute to this library, please follow the patterns and style of the rest of the code.
 
+Moreover, install the Git hooks.
+
+```shell
+
+```
+
+
+
 Tips:
 
 - In C, use `malloc` to allocate memory to the heap, instead of creating arrays that allocate memory to the stack, as with large array we would incur in a [segmentation fault due to stack overflow](https://stackoverflow.com/a/1847886).

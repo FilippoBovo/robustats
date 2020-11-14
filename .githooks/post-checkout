@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# Synchronise the Python libraries
+./utilities/sync_python_virtualenv.sh
