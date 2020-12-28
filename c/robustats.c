@@ -24,7 +24,7 @@
 double weighted_median(double *x, double *w, int64_t begin, int64_t end)
 {
    int64_t xw_n, n, i, median_index;
-   double median, w_middle;
+   double median;
    double w_lower_sum, w_lower_sum_norm, w_higher_sum, w_higher_sum_norm;
    
    xw_n = end - begin + 1;  // Length between begin and end
@@ -52,10 +52,7 @@ double weighted_median(double *x, double *w, int64_t begin, int64_t end)
       else
       {
          median_index = begin + (n - 1) / 2;  // Lower median index
-         median = partition_on_kth_smallest_2d(
-            xw, begin, end, 2, 0, median_index);
-
-         w_middle = xw[median_index][1];
+         median = partition_on_kth_smallest_2d(xw, begin, end, 2, 0, median_index);
 
          w_lower_sum = 0.;
          for (i = begin; i < median_index; i++)
@@ -191,7 +188,7 @@ double medcouple(double *x, int64_t n, double epsilon1, double epsilon2)
 
    // To rescale z_minus and z_plus inside [-0.5, 0.5], for greater numerical
    // stability.
-   double scale_factor = 2 * max(x[0] - median, median - x[n - 1]);
+   double scale_factor = 2 * max_(x[0] - median, median - x[n - 1]);
 
    // Create z_plus
    int64_t lowest_median_index = median_index;

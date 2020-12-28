@@ -1,6 +1,6 @@
 #include <stdint.h>
 
-double max(double a, double b);
+double max_(double a, double b);
 double sign(double x);
 int64_t sum_int(int64_t *x, int64_t n);
 double sum_double(double *x, int64_t n);

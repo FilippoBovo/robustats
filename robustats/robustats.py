@@ -6,10 +6,7 @@ import numpy as np
 import _robustats
 
 
-def weighted_median(
-        x: Union[List[float], np.ndarray],
-        weights: Union[List[float], np.ndarray]
-) -> float:
+def weighted_median(x: Union[List[float], np.ndarray], weights: Union[List[float], np.ndarray]) -> float:
     """Calculate the weighted median of an array with related weights.
 
     For arrays with an even number of elements, this function calculates the
@@ -54,16 +51,15 @@ def medcouple(x: Union[List[float], np.ndarray]) -> float:
         >>> medcouple(x=[0.2, 0.17, 0.08, 0.16, 0.88, 0.86, 0.09, 0.54, 0.27])
         0.7
     """
-    if type(x) == list:
+    if isinstance(x, list):
         epsilon1 = sys.float_info.epsilon
         epsilon2 = sys.float_info.min
-    elif type(x) == np.ndarray:
+    elif isinstance(x, np.ndarray):
         epsilon1 = np.finfo(x.dtype).eps
         epsilon2 = np.finfo(x.dtype).min
     else:
         raise ValueError(
-            "Wrong function argument: array type not supported; please use a "
-            "Python list or a Numpy array."
+            "Wrong function argument: array type not supported; please use a " "Python list or a Numpy array."
         )
 
     return _robustats.medcouple(x, epsilon1, epsilon2)
