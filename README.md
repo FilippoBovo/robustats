@@ -1,3 +1,6 @@
+> [!WARNING]  
+> This project is **discontinued and not maintained** anymore. If you would like to make a change, please fork this repository.
+
 # Robustats
 
 Robustats is a Python library for high-performance computation of robust statistical estimators.
