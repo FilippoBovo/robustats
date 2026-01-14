@@ -59,8 +59,8 @@ static PyObject *robustats_weighted_median(PyObject *self, PyObject *args)
         return NULL;
 
     // Interpret the input objects as numpy arrays
-    PyObject *x_array = PyArray_FROM_OTF(x_obj, NPY_DOUBLE, NPY_IN_ARRAY);
-    PyObject *w_array = PyArray_FROM_OTF(w_obj, NPY_DOUBLE, NPY_IN_ARRAY);
+    PyObject *x_array = PyArray_FROM_OTF(x_obj, NPY_DOUBLE, NPY_ARRAY_IN_ARRAY);
+    PyObject *w_array = PyArray_FROM_OTF(w_obj, NPY_DOUBLE, NPY_ARRAY_IN_ARRAY);
 
     // If that didn't work, throw an exception
     if (x_array == NULL || w_array == NULL) {
@@ -98,7 +98,7 @@ static PyObject *robustats_medcouple(PyObject *self, PyObject *args)
         return NULL;
 
     // Interpret the input objects as numpy arrays
-    PyObject *x_array = PyArray_FROM_OTF(x_obj, NPY_DOUBLE, NPY_IN_ARRAY);
+    PyObject *x_array = PyArray_FROM_OTF(x_obj, NPY_DOUBLE, NPY_ARRAY_IN_ARRAY);
 
     // If that didn't work, throw an exception
     if (x_array == NULL) {
@@ -132,7 +132,7 @@ static PyObject *robustats_mode(PyObject *self, PyObject *args)
         return NULL;
 
     // Interpret the input objects as numpy arrays
-    PyObject *x_array = PyArray_FROM_OTF(x_obj, NPY_DOUBLE, NPY_IN_ARRAY);
+    PyObject *x_array = PyArray_FROM_OTF(x_obj, NPY_DOUBLE, NPY_ARRAY_IN_ARRAY);
 
     // If that didn't work, throw an exception
     if (x_array == NULL) {

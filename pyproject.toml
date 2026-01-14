@@ -1,2 +1,21 @@
 [build-system]
-requires = ["setuptools", "wheel", "numpy"]
+build-backend = 'mesonpy'
+requires = ['meson-python', 'numpy']
+
+[project]
+name='robustats'
+version='0.1.7'
+description='Robustats is a Python library for high-performance computation of robust statistical estimators.'
+readme='README.md'
+classifiers=[
+    'Programming Language :: Python :: 3'
+]
+authors=[
+{name='Filippo Bovo', email='bovo.filippo@gmail.com'},
+]
+license='MIT'
+requires=['numpy']
+
+[project.urls]
+homepage='https://github.com/FilippoBovo/robustats'
+download='https://github.com/FilippoBovo/robustats/archive/v0.1.5.tar.gz'
